@@ -7,5 +7,5 @@ text = requests.get(url).content.decode('utf-8')
 
 print(text[:1000])
 
-
-
+class MyHtmlParser(HTMLParser):
+    pass
