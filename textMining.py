@@ -1,5 +1,8 @@
 import requests
 from html.parser import HTMLParser
+import sys
+import nlp_rake
+
 
 url = "https://en.wikipedia.org/wiki/Data_science"
 
@@ -42,3 +45,16 @@ parser.feed(text)  #using the feed method to pass the data to the parser
 text = parser.res
 
 print(text[:1000])
+
+# creating an insance of the nlp_rake libray 
+# we set the max number of words in the keyword phrase,
+# min frequency the key phrase is listed 
+# min number of characters in the key phrase 
+extractor = nlp_rake.Rake(max_words=2, min_freq=3, min_chars=5)
+result = extractor.apply(text)
+
+print("--------------Insight from the text data--------------  ")
+print(result)
+
+# The reurted list orders the keyphrases in terms of importance 
+
