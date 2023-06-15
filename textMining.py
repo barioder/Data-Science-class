@@ -1,5 +1,8 @@
 import requests
 from html.parser import HTMLParser
+import sys
+import nlp_rake
+import matplotlib.pyplot as plt
 
 url = "https://en.wikipedia.org/wiki/Data_science"
 
@@ -42,3 +45,29 @@ parser.feed(text)  #using the feed method to pass the data to the parser
 text = parser.res
 
 print(text[:1000])
+
+# creating an insance of the nlp_rake libray 
+# we set the max number of words in the keyword phrase,
+# min frequency the key phrase is listed 
+# min number of characters in the key phrase 
+extractor = nlp_rake.Rake(max_words=2, min_freq=3, min_chars=5)
+result = extractor.apply(text)  # applies the keyword extraction 
+
+print("--------------Insight from the text data--------------  ")
+print(result) #returns a list ordered by keyphrases in terms of importance 
+
+# Visualizing the results 
+# A function that takes in list of key value pairs and generates a graph 
+def plot(pair_list):
+    k,v = zip(*pair_list)
+
+    # plot the bars and y axis values 
+    plt.bar(range(len(k)), v)
+    # x axis tick lables 
+    plt.xticks(range(len(k)),k, rotation ="vertical")
+    plt.show()
+
+
+plot(result)
+
+
