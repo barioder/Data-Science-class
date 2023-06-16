@@ -4,6 +4,9 @@ import sys
 import nlp_rake
 import matplotlib.pyplot as plt
 
+from wordcloud import WordCloud
+
+
 url = "https://en.wikipedia.org/wiki/Data_science"
 
 text = requests.get(url).content.decode('utf-8')
@@ -70,4 +73,9 @@ def plot(pair_list):
 
 plot(result)
 
-
+# Using a work cloud to visualuze the data
+wordCloud = WordCloud(background_color='white', width=800, height=600)# the dimensions are for the cloud canvas
+# size for the figure 
+plt.figure(figsize=(15,7))
+plt.imshow(wordCloud.generate_from_frequencies({k:v for k,v in result }))
+plt.show()
