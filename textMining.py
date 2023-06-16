@@ -74,7 +74,8 @@ def plot(pair_list):
 plot(result)
 
 # Using a work cloud to visualuze the data
-wordCloud = WordCloud(background_color='white', width=800, height=600)
+wordCloud = WordCloud(background_color='white', width=800, height=600)# the dimensions are for the cloud canvas
+# size for the figure 
 plt.figure(figsize=(15,7))
 plt.imshow(wordCloud.generate_from_frequencies({k:v for k,v in result }))
 plt.show()
