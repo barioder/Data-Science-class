@@ -38,3 +38,16 @@ threads_sold.plot(figsize=(10,3))
 plt.xlabel("Year 2023")
 plt.ylabel("Threads Sold")
 plt.show()
+
+# suppose 10 threads are picked every week by a known customer 
+# by default the date_range function we set the weekly frequency on sundays  
+additional_threads = pd.Series(10, index=pd.date_range(start_date, end_date,freq="W"))
+print(additional_threads)
+
+# Addition of series 
+# we specify a fill_value when ever we are addig series  for cases where we have 
+# missing values for some index points i.e our additional_threads in this case
+total_threads =  threads_sold.add(additional_threads, fill_value=0)
+
+total_threads.plot()
+plt.show()
