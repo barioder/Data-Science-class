@@ -51,3 +51,10 @@ total_threads =  threads_sold.add(additional_threads, fill_value=0)
 
 total_threads.plot()
 plt.show()
+
+# Resampling the series with a different time intervals
+#  we resample the series with a monthly interval here 
+monthly = total_threads.resample("1M").mean()
+print(monthly)
+ax =monthly.plot(kind="bar")
+plt.show()
