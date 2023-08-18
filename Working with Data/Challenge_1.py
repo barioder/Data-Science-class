@@ -19,3 +19,14 @@ print(infected[["Province/State", "Country/Region"]])
 # we can note the Province/State column has NAN on some rows 
 china = infected[infected["Country/Region"]=="China"]
 print(china)
+
+print("Grouped by")
+#  Pre-processing data 
+# our dataframe will be indexed by country/region column after groupby is applied. 
+infected = infected.groupby("Country/Region").sum()
+print(infected)
+
+# access Data for a specific country in the dataframe
+
+infected.loc["Albania"][2:].plot()
+plt.show()
