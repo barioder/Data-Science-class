@@ -44,7 +44,7 @@ print("----------------After dropping rows-----------------")
 
 infected.drop(columns=["Province/State","Lat", "Long"], inplace=True) 
 print(infected, "infected")
-
+print(infected.loc["Albania"])
 recovered.drop(columns=["Province/State","Lat", "Long"], inplace=True)
 print(recovered, "recorvered")
 deaths.drop(columns=["Province/State","Lat", "Long"], inplace=True)
@@ -58,7 +58,7 @@ def mkframe(country):
                        "deaths": deaths.loc[country]
                     
                       })
-    print("my df")
+    print("-------my df BEFORE COVERTING------")
     print(df)
 
     
@@ -71,3 +71,16 @@ df
 df.plot()
 plt.show()
 
+#  computing the number of new infected cases each day 
+# diff() calculates the differences between consecutive values 
+
+df["ninfected"] = df["infected"].diff()
+print(df)
+df["ninfected"].plot()
+
+plt.show()
+
+#  we can look closer at one month of the results 
+
+df[(df.index.year==2022)&(df.index.month==8)]["ninfected"].plot()
+plt.show()
