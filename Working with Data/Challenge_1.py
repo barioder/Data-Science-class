@@ -84,3 +84,10 @@ plt.show()
 
 df[(df.index.year==2022)&(df.index.month==8)]["ninfected"].plot()
 plt.show()
+
+# break down the results futher into weeks 
+df["ninfav"] = df["ninfected"].rolling(window=7).mean()
+df["ninfav"].plot()
+plt.show()
+print(df[:100])
+
