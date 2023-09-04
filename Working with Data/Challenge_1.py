@@ -91,3 +91,17 @@ df["ninfav"].plot()
 plt.show()
 print(df[:100])
 
+# see the spread of the pandemic in different countries
+
+
+countries = ["Zambia", "Angola", "Yemen","Andorra","Zimbabwe","China"]
+
+for country in countries:
+    data = infected.loc[country]
+    plt.plot(data.index, data, label=country)
+
+plt.xlabel("Date")
+plt.ylabel("Cases")
+plt.legend()
+plt.xticks(data.index[::50],rotation=45)
+plt.show()
