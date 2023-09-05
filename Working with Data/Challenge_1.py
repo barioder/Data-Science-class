@@ -105,3 +105,25 @@ plt.ylabel("Cases")
 plt.legend()
 plt.xticks(data.index[::50],rotation=45)
 plt.show()
+
+
+# See how the number of deaths and recoveries correlate with number of infected cases
+print(infected)
+
+print(recovered)
+print(deaths)
+
+infected_transposed = infected.transpose()
+deaths_transposed = deaths.transpose()
+
+corr_infected_recovered = infected_transposed.corrwith(deaths_transposed)
+print(corr_infected_recovered)
+
+# convert series to dataframe 
+
+correlation_df = pd.DataFrame({"recorvered Correlation": corr_infected_recovered})
+
+print(correlation_df)
+
+correlation_df.reset_index(inplace=True)
+print(correlation_df)
