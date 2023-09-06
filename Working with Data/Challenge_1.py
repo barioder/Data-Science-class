@@ -116,14 +116,29 @@ print(deaths)
 infected_transposed = infected.transpose()
 deaths_transposed = deaths.transpose()
 
+print(infected_transposed,"Transpose")
+print(deaths_transposed,"Transposed 2")
+
 corr_infected_recovered = infected_transposed.corrwith(deaths_transposed)
 print(corr_infected_recovered)
 
 # convert series to dataframe 
-
 correlation_df = pd.DataFrame({"recorvered Correlation": corr_infected_recovered})
+print(correlation_df, "No Values")
 
-print(correlation_df)
+correlation_df_values = pd.DataFrame({"recorvered Correlation": corr_infected_recovered.values})
+
+print(correlation_df_values, "Values")
 
 correlation_df.reset_index(inplace=True)
 print(correlation_df)
+
+plt.scatter(correlation_df["Country/Region"], correlation_df["recorvered Correlation"], label='Correlation')
+plt.title("Colleration of deaths and recovered")
+plt.xlabel("Country/Region")
+plt.ylabel("Correlation")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.legend()
+
+plt.show()
